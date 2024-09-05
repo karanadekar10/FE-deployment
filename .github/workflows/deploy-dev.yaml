@@ -13,16 +13,9 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2.1.1
         with:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "UI deployment started!"
+          name: "UI deployment started!"
+          url: ${{ secrets.SLACK_WEBHOOK }}
           status: ${{ job.status }}
-
-      # - name: Chat Setup
-      #   uses: Co-qn/google-chat-notification@v1
-      #   with:
-      #     name: UI deployment started!
-      #     url: ${{ secrets.CHAT_WEBHOOK }}
-      #     status: ${{ job.status }}
 
       - name: Checking out code
         uses: actions/checkout@v3
