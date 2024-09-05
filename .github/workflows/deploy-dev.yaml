@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2.1.1
-        env:
+        with:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: "UI deployment started!"
           status: ${{ job.status }}
