@@ -13,8 +13,15 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2.1.1
         env:
-          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-          message: "UI deployment started!"
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "UI deployment started!"
+          status: ${{ job.status }}
+      - name: Slack Notification
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2.1.1
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "UI deployment failed!"
           status: ${{ job.status }}
 
       - name: Checking out code
@@ -28,8 +35,8 @@ jobs:
       - name: Installing dependencies
         run: npm install --legacy-peer-deps
 
-      # - name: Building admin-provider project
-      #   run: nx build admin-provider
+      - name: Building admin-provider project
+        run: nx build admin-provider
 
       # - name: Building patient project
       #   run: nx build patient
