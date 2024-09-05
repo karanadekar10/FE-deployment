@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        with:
-          name: "UI deployment started!"
-          url: ${{ secrets.SLACK_WEBHOOK }}
+        uses: rtCamp/action-slack-notify@v2.1.1
+        env:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          message: "UI deployment started!"
           status: ${{ job.status }}
 
       - name: Checking out code
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-
+          
       - name: Installing dependencies
         run: npm install --legacy-peer-deps
 
@@ -67,3 +67,4 @@ jobs:
       #     name: UI deployment completed!
       #     url: ${{ secrets.CHAT_WEBHOOK }}
       #     status: ${{ job.status }}
+
