@@ -43,7 +43,7 @@ jobs:
           aws-region: us-west-2
 
       - name: Deploy admin-provider to S3 bucket
-        run: aws s3 sync ./dist/admin s3://${{ secrets.AWS_S3_ADMIN_PROVIDER_BUCKET_DEV }} --delete
+        run: aws s3 sync ./dist/myfebucket s3://${{ secrets.AWS_S3_ADMIN_PROVIDER_BUCKET_DEV }} --delete
 
       # - name: Deploy patient to S3 bucket
       #   run: aws s3 sync ./dist/apps/patient s3://${{ secrets.AWS_S3_PATIENT_BUCKET_DEV }} --delete
