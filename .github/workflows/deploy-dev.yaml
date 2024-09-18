@@ -29,11 +29,8 @@ jobs:
       - name: Installing dependencies
         run: npm install --legacy-peer-deps
 
-      # - name: Building admin-provider project
-      #   run: nx build admin-provider
-
-      # - name: Building patient project
-      #   run: nx build patient
+      - name: Building myfebucket project
+        run: npm run build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
